@@ -153,7 +153,7 @@ export default function App() {
       <div className="wrap">
         <header>
           <div className="wordmark">
-            <span className="moon" aria-hidden="true">💀</span>
+            <img className="wordmark-logo" src="/brand/logo.png" alt="" aria-hidden="true" />
             <span className="name">THE REAPERS</span>
           </div>
           <nav className="main-nav">

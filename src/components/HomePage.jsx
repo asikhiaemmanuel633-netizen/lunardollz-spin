@@ -1,7 +1,7 @@
 export default function HomePage({ onGoToSpin }) {
   return (
     <section className="page-home">
-      <span className="home-hero-icon" aria-hidden="true">💀</span>
+      <img className="home-hero-icon" src="/brand/logo.png" alt="" aria-hidden="true" />
       <h1>THE <em>REAPERS</em></h1>
       <p>
         A community-driven NFT collection of 2,222 unique Reapers, built on

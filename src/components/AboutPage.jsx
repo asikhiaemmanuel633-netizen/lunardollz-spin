@@ -2,7 +2,7 @@ export default function AboutPage() {
   return (
     <section className="page-about">
       <div className="about-hero">
-        <span className="about-hero-icon" aria-hidden="true">💀</span>
+        <img className="about-hero-icon" src="/brand/logo.png" alt="" aria-hidden="true" />
         <h1>Welcome to <em>The Reapers</em></h1>
         <p className="about-tagline">You just entered the darkness.</p>
       </div>
