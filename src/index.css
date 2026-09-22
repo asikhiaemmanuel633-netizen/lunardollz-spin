@@ -543,3 +543,43 @@ footer code{ color: var(--gold); }
 }
 
 :focus-visible{ outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* mobile polish */
+.wallet-chip, .lb-wallet, .about-token-link, footer code{
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px){
+  .wrap{ padding-left: 16px; padding-right: 16px; }
+  header{ padding-top: 20px; gap: 8px; }
+  .header-right{ flex-wrap: wrap; justify-content: flex-end; row-gap: 8px; }
+  .wordmark .name{ font-size: 1.1rem; }
+  .wordmark .moon{ font-size: 1.1rem; }
+  .beta-chip{ display: none; } /* decorative — first to go when space is tight */
+  .ticket-badge{ font-size: 0.74rem; padding: 5px 10px; }
+  .header-right .btn{ padding: 8px 14px; font-size: 0.78rem; }
+
+  .page-home{ padding-top: 50px; }
+  .about-section{ padding: 20px 18px; }
+  .about-hero{ padding-top: 10px; }
+
+  .buy-tickets{ padding: 14px 14px; }
+  .buy-tickets-row{ gap: 8px; }
+  .buy-tickets-row .btn{ padding: 8px 14px; font-size: 0.8rem; }
+
+  .vault-row{ flex-wrap: wrap; gap: 8px; }
+  .vault-row .r-right{ width: 100%; justify-content: space-between; }
+  .vault-row .r-claim{ width: 100%; justify-content: space-between; }
+
+  .leaderboard-row{ flex-wrap: wrap; row-gap: 4px; }
+  .lb-wallet{ min-width: 0; }
+  .lb-spins{ margin-left: auto; }
+
+  .modal{ padding: 28px 20px 22px; }
+  .steps{ margin-top: 56px; }
+  .stats{ margin-top: 40px; }
+  .leaderboard{ margin-top: 32px; }
+  .vault{ margin-top: 56px; }
+
+  footer{ font-size: 0.7rem; margin-top: 50px; }
+}
