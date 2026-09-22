@@ -169,7 +169,7 @@ export default function App() {
         </header>
 
         <div className="page-transition" key={page}>
-          {page === 'home' && <HomePage onGoToSpin={() => setPage('spin')} />}
+          {page === 'home' && <HomePage onGoToSpin={() => setPage('spin')} onGoToAbout={() => setPage('about')} />}
           {page === 'about' && <AboutPage />}
 
           {page === 'spin' && (

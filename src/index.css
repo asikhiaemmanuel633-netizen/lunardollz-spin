@@ -107,22 +107,153 @@ header{
 }
 @media (max-width: 640px){ .main-nav{ order: 3; width: 100%; justify-content:center; } }
 
-/* home / about pages */
-.page-home{ text-align:center; padding: 80px 0 40px; }
-.home-hero-icon{
-  display:inline-block;
-  width: 72px;
-  height: auto;
-  margin-bottom: 16px;
-  filter: drop-shadow(0 0 18px rgba(242,200,121,0.4));
+/* home page — full landing page, dark premium spooky-bone theme */
+.page-home-full{ padding-bottom: 20px; }
+
+.rh-hero{ text-align:center; padding: 70px 0 30px; }
+.rh-hero-logo{
+  width: 84px; height: auto;
+  margin-bottom: 14px;
+  filter: drop-shadow(0 0 20px rgba(242,200,121,0.45));
 }
-.page-home h1{
+.rh-eyebrow{
+  display:block;
+  font-family:'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.rh-hero h1{
   font-family:'Fraunces', serif; font-weight:500; font-style:italic;
-  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  color: #EDE7D8;
   margin: 0 0 18px;
+  line-height: 1.1;
 }
-.page-home h1 em{ font-style:normal; color: var(--gold); }
-.page-home p{ color: var(--muted); max-width: 520px; margin: 0 auto 28px; font-size: 1.05rem; }
+.rh-hero h1 em{ font-style: normal; color: var(--gold); }
+.rh-hero > p{ color: var(--muted); max-width: 560px; margin: 0 auto 30px; font-size: 1.05rem; line-height: 1.7; }
+
+.rh-hero-actions{
+  display:flex; gap: 14px; justify-content:center; flex-wrap:wrap;
+  margin-bottom: 22px;
+}
+.rh-hero-actions .btn{ text-decoration:none; }
+
+.rh-tagline{
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  opacity: 0.75;
+}
+
+.rh-section{ max-width: 900px; margin: 56px auto; text-align:center; }
+.rh-section h2{
+  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  color: #EDE7D8;
+  margin: 0 0 14px;
+}
+.rh-section-intro{
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 34px;
+  line-height: 1.7;
+}
+
+.rh-cards{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  text-align:left;
+}
+@media (max-width: 720px){ .rh-cards{ grid-template-columns: 1fr; } }
+.rh-card{
+  background: linear-gradient(180deg, rgba(30,21,65,0.55), rgba(23,15,53,0.4));
+  border: 1px solid rgba(232,226,208,0.12);
+  border-radius: 18px;
+  padding: 26px 24px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+.rh-card-icon{
+  display:block;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.rh-card h3{
+  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-size: 1.1rem;
+  color: #EDE7D8;
+  margin: 0 0 8px;
+}
+.rh-card p{ color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin: 0; }
+
+.rh-lair{ text-align:center; }
+
+.rh-roadmap{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  text-align:left;
+}
+@media (max-width: 900px){ .rh-roadmap{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px){ .rh-roadmap{ grid-template-columns: 1fr; } }
+.rh-phase{
+  background: rgba(11,8,32,0.4);
+  border: 1px solid rgba(232,226,208,0.1);
+  border-radius: 16px;
+  padding: 20px 20px 22px;
+}
+.rh-phase-num{
+  display:block;
+  font-family:'Fraunces', serif; font-style:italic;
+  color: var(--gold);
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+.rh-phase h3{
+  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-size: 1rem;
+  color: #EDE7D8;
+  margin: 0 0 12px;
+}
+.rh-phase ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-direction:column; gap:7px;
+}
+.rh-phase li{
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding-left: 14px;
+  position: relative;
+}
+.rh-phase li::before{
+  content:"—";
+  position:absolute; left:0; top:0;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.rh-final-cta{
+  text-align:center;
+  max-width: 600px;
+  margin: 70px auto 30px;
+  padding: 44px 30px;
+  background: linear-gradient(180deg, rgba(30,21,65,0.6), rgba(23,15,53,0.4));
+  border: 1px solid rgba(242,200,121,0.25);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 60px rgba(165,108,240,0.12);
+}
+.rh-final-cta h2{
+  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  color: #EDE7D8;
+  margin: 0 0 10px;
+}
+.rh-final-cta p{ color: var(--muted); margin: 0 0 24px; }
+
+@media (max-width: 480px){
+  .rh-hero{ padding-top: 40px; }
+  .rh-section{ margin: 40px auto; }
+  .rh-final-cta{ padding: 32px 22px; margin-top: 50px; }
+}
 
 /* about page — dark, premium, spooky-bone theme */
 .page-about{ max-width: 720px; margin: 40px auto 60px; }
@@ -566,7 +697,7 @@ footer code{ color: var(--gold); }
   .ticket-badge{ font-size: 0.74rem; padding: 5px 10px; }
   .header-right .btn{ padding: 8px 14px; font-size: 0.78rem; }
 
-  .page-home{ padding-top: 50px; }
+  .rh-hero{ padding-top: 50px; }
   .about-section{ padding: 20px 18px; }
   .about-hero{ padding-top: 10px; }
 
