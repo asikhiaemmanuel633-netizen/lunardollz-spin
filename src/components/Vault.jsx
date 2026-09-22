@@ -26,7 +26,7 @@ export default function Vault({ items, onClaim, claimingId, errors, canClaim }) 
                   {isClaimed ? (
                     <a
                       className="r-link"
-                      href={`https://explorer.solana.com/address/${v.mint}?cluster=devnet`}
+                      href={`https://solscan.io/token/${v.mint}`}
                       target="_blank"
                       rel="noreferrer"
                     >
