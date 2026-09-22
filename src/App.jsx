@@ -176,7 +176,7 @@ export default function App() {
             <>
               <section className="hero">
                 <h1>Roll the reel.<br />Wake an <em>NFT</em> from its slumber.</h1>
-                <p>Connect, roll once a day, and watch the lunar reel pull a reward — from doll shards to a legendary moonstone.</p>
+                <p>Enter the lair, connect your wallet, and roll once a day for a chance to claim rewards from The Reapers — from rare tokens and loot to exclusive NFT prizes. ☠️</p>
               </section>
 
               <ReelSpinner ref={reelRef} onSpinStart={handleSpinStart} onResult={handleResult} />
