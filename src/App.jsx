@@ -229,7 +229,6 @@ export default function App() {
               <div className="stats">
                 <div className="stat"><span className="n">{walletState.spinCount}</span><span className="l">Your rolls</span></div>
                 <div className="stat"><span className="n">{walletState.vault.filter((v) => v.mint).length}</span><span className="l">Rewards claimed</span></div>
-                <div className="stat"><span className="n">18,204</span><span className="l">Community rolls (demo)</span></div>
               </div>
 
               <Leaderboard refreshKey={walletState.spinCount} />
