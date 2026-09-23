@@ -56,9 +56,9 @@ export default function HomePage({ onGoToSpin, onGoToAbout }) {
           community, meet other collectors, participate in events and stay
           close to what's happening inside the realm.
         </p>
-        <div className="rh-hero-actions">
-          <a className="btn" href="#" target="_blank" rel="noreferrer">Join the Discord</a>
-          <a className="btn btn-ghost" href="#" target="_blank" rel="noreferrer">Follow on X</a>
+       <div className="rh-hero-actions">
+          <a className="btn" href="https://discord.gg/HPNknfkCz" target="_blank" rel="noreferrer">Join the Discord</a>
+          <a className="btn btn-ghost" href="https://x.com/TheGrimRipear" target="_blank" rel="noreferrer">Follow on X</a>
         </div>
         <div className="rh-tagline">COMMUNITY &bull; EVENTS &bull; QUESTS &bull; GIVEAWAYS &bull; COLLABS</div>
       </section>
