@@ -246,8 +246,7 @@ export default function App() {
         </div>
 
         <footer>
-          Wallet connect, ticket purchases, and reward claims are all real on-chain transactions (devnet). See{' '}
-          <code>src/lib/claimReward.js</code> for how claiming works and its current limits.
+             © 2026 Solana Grim Reaper. All rights reserved.
         </footer>
       </div>
 
