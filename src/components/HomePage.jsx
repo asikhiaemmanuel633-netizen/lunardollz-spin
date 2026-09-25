@@ -1,4 +1,4 @@
-export default function HomePage({ onGoToSpin, onGoToAbout, onOpenGame }) {
+export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
   return (
     <div className="page-home-full">
 
@@ -116,7 +116,7 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onOpenGame }) {
       <section id="games" className="rh-section game-section">
         <h2>The Games</h2>
         <p className="rh-section-intro">Outrun the reaper. Survive as long as you can.</p>
-        <div className="game-card game-card-cover" onClick={onOpenGame}>
+        <div className="game-card game-card-cover" onClick={onGoToGames}>
           <img src="/sprites/reaper-run-cover.jpg" alt="Reaper Run" className="game-card-img" />
           <div className="game-card-overlay">
             <button className="wooden-play-btn">▶ Play</button>

@@ -14,6 +14,7 @@ import { useLocalState } from './hooks/useLocalState';
 import { claimRewardFromVault } from './lib/claimReward';
 import { recordSpin } from './lib/leaderboard';
 import GameModal from './components/GameModal';
+import ReaperRunner from './components/ReaperRunner';
 
 export default function App() {
   const { publicKey, connected } = useWallet();
@@ -150,11 +151,12 @@ export default function App() {
             <img className="wordmark-logo" src="/brand/logo.png" alt="" aria-hidden="true" />
             <span className="name">THE REAPERS</span>
           </div>
-          <nav className="main-nav">
-            <button className={page === 'home' ? 'active' : ''} onClick={() => setPage('home')}>Home</button>
-            <button className={page === 'spin' ? 'active' : ''} onClick={() => setPage('spin')}>Spin</button>
-            <button className={page === 'about' ? 'active' : ''} onClick={() => setPage('about')}>About</button>
-          </nav>
+         <nav className="main-nav">
+  <button className={page === 'home' ? 'active' : ''} onClick={() => setPage('home')}>Home</button>
+  <button className={page === 'spin' ? 'active' : ''} onClick={() => setPage('spin')}>Spin</button>
+  <button className={page === 'games' ? 'active' : ''} onClick={() => setPage('games')}>Games</button>
+  <button className={page === 'about' ? 'active' : ''} onClick={() => setPage('about')}>About</button>
+</nav>
           <div className="header-right">
             <span className="beta-chip">Lucky Spins · Beta</span>
             {connected && <span className="ticket-badge">🎟 {tickets}</span>}
@@ -166,8 +168,8 @@ export default function App() {
           {page === 'home' && (
             <HomePage
               onGoToSpin={() => setPage('spin')}
-              onGoToAbout={() => setPage('about')}
-              onOpenGame={() => setGameOpen(true)}
+    onGoToAbout={() => setPage('about')}
+    onGoToGames={() => setPage('games')}
             />
           )}
           {page === 'about' && <AboutPage onOpenGame={() => setGameOpen(true)} />}
@@ -230,13 +232,13 @@ export default function App() {
                 <div className="stat"><span className="n">{walletState.spinCount}</span><span className="l">Your rolls</span></div>
                 <div className="stat"><span className="n">{walletState.vault.filter((v) => v.mint).length}</span><span className="l">Rewards claimed</span></div>
               </div>
-
-             <div className="game-card game-card-cover" onClick={() => setGameOpen(true)}>
-  <img src="/sprites/reaper-run-cover.jpg" alt="Reaper Run" className="game-card-img" />
-  <div className="game-card-overlay">
-    <button className="wooden-play-btn">▶ Play</button>
-  </div>
-</div>
+              {page === 'games' && (
+  <section className="hero">
+    <h1>The Games</h1>
+    <p>Outrun the reaper. Survive as long as you can.</p>
+    <ReaperRunner />
+  </section>
+)}
 
               <Leaderboard refreshKey={walletState.spinCount} />
 
