@@ -1,6 +1,6 @@
-import ReaperRunner from './ReaperRunner';
 
-export default function HomePage({ onGoToSpin, onGoToAbout }) {
+
+export default function HomePage({ onGoToSpin, onGoToAbout, onOpenGame }) {
   return (
     <div className="page-home-full">
 
@@ -114,12 +114,15 @@ export default function HomePage({ onGoToSpin, onGoToAbout }) {
 
       <div className="bone-divider" aria-hidden="true"><span>🦴</span></div>
 
-      {/* GAMES */}
-      <section id="games" className="rh-section game-section">
-        <h2>The Games</h2>
-        <p className="rh-section-intro">Outrun the reaper. Survive as long as you can.</p>
-        <ReaperRunner />
-      </section>
+     {/* GAMES */}
+<section id="games" className="rh-section game-section">
+  <h2>The Games</h2>
+  <p className="rh-section-intro">Outrun the reaper. Survive as long as you can.</p>
+  <div className="game-card" onClick={onOpenGame}>
+    <h3>Reaper Run</h3>
+    <p>Click to play</p>
+  </div>
+</section>
 
       {/* FINAL CTA */}
       <section className="rh-final-cta">

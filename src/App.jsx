@@ -13,7 +13,7 @@ import { REWARDS } from './data/rewards';
 import { useLocalState } from './hooks/useLocalState';
 import { claimRewardFromVault } from './lib/claimReward';
 import { recordSpin } from './lib/leaderboard';
-import ReaperRunner from "./components/ReaperRunner";
+import GameModal from './components/GameModal';
 
 export default function App() {
   const { publicKey, connected } = useWallet();
@@ -28,9 +28,8 @@ export default function App() {
   const [claimSuccess, setClaimSuccess] = useState(false);
   const [vaultClaimingId, setVaultClaimingId] = useState(null);
   const [vaultClaimErrors, setVaultClaimErrors] = useState({});
+  const [gameOpen, setGameOpen] = useState(false);
 
-  // Keyed by wallet address, so each connected wallet gets its own saved
-  // ticket balance/spin history/vault instead of one shared bucket.
   const storageKey = publicKey ? `ldz_${publicKey.toBase58()}` : 'ldz_guest';
   const [walletState, setWalletState] = useLocalState(storageKey, {
     tickets: 0,
@@ -56,8 +55,6 @@ export default function App() {
 
   function handleSpinClick() {
     if (!canSpin) return;
-    // Spend the ticket up front — if the reel result handling fails for any
-    // reason, the player shouldn't get a free extra spin.
     setWalletState((s) => ({ ...s, tickets: s.tickets - 1 }));
     reelRef.current?.spin(walletState.spinCount, publicKey?.toBase58());
   }
@@ -90,26 +87,22 @@ export default function App() {
         ...s,
         vault: [{ ...pendingReward, entryId: makeEntryId(pendingReward.id), time: Date.now(), mint, signature }, ...s.vault],
       }));
-      // Stay open on a success screen (with confetti) instead of vanishing —
-      // handleCloseModal (the ✕ / "Nice!" button) clears it once they're done.
       setClaimSuccess(true);
     } catch (err) {
       console.error('Claim failed:', err);
-      setClaimError(err?.message?.toLowerCase().includes('user rejected')
-        ? 'You cancelled the claim transaction.'
-        : `Claim failed: ${err?.message || 'unknown error'}`);
+      setClaimError(
+        err?.message?.toLowerCase().includes('user rejected')
+          ? 'You cancelled the claim transaction.'
+          : `Claim failed: ${err?.message || 'unknown error'}`
+      );
     } finally {
       setClaiming(false);
     }
   }
 
   function handleCloseModal() {
-    if (claiming) return; // don't let them close mid-transaction
+    if (claiming) return;
 
-    // Closing without claiming shouldn't throw the win away — save it to
-    // the vault as unclaimed so they can claim it later from there instead.
-    // (Skip this if they already successfully claimed — it's in the vault
-    // already, from handleClaim above, so this would double-add it.)
     if (!claimSuccess && pendingReward && pendingReward.claimable) {
       setWalletState((s) => ({
         ...s,
@@ -170,8 +163,14 @@ export default function App() {
         </header>
 
         <div className="page-transition" key={page}>
-          {page === 'home' && <HomePage onGoToSpin={() => setPage('spin')} onGoToAbout={() => setPage('about')} />}
-          {page === 'about' && <AboutPage />}
+          {page === 'home' && (
+            <HomePage
+              onGoToSpin={() => setPage('spin')}
+              onGoToAbout={() => setPage('about')}
+              onOpenGame={() => setGameOpen(true)}
+            />
+          )}
+          {page === 'about' && <AboutPage onOpenGame={() => setGameOpen(true)} />}
 
           {page === 'spin' && (
             <>
@@ -232,6 +231,11 @@ export default function App() {
                 <div className="stat"><span className="n">{walletState.vault.filter((v) => v.mint).length}</span><span className="l">Rewards claimed</span></div>
               </div>
 
+              <div className="game-card" onClick={() => setGameOpen(true)}>
+                <h3>Reaper Run</h3>
+                <p>Outrun death. Click to play.</p>
+              </div>
+
               <Leaderboard refreshKey={walletState.spinCount} />
 
               <Vault
@@ -251,6 +255,7 @@ export default function App() {
       </div>
 
       <RewardModal reward={pendingReward} open={modalOpen} onClaim={handleClaim} onClose={handleCloseModal} claiming={claiming} error={claimError} success={claimSuccess} />
+      <GameModal open={gameOpen} onClose={() => setGameOpen(false)} />
     </>
   );
 }
