@@ -231,10 +231,12 @@ export default function App() {
                 <div className="stat"><span className="n">{walletState.vault.filter((v) => v.mint).length}</span><span className="l">Rewards claimed</span></div>
               </div>
 
-              <div className="game-card" onClick={() => setGameOpen(true)}>
-                <h3>Reaper Run</h3>
-                <p>Outrun death. Click to play.</p>
-              </div>
+             <div className="game-card game-card-cover" onClick={() => setGameOpen(true)}>
+  <img src="/sprites/reaper-run-cover.jpg" alt="Reaper Run" className="game-card-img" />
+  <div className="game-card-overlay">
+    <button className="wooden-play-btn">▶ Play</button>
+  </div>
+</div>
 
               <Leaderboard refreshKey={walletState.spinCount} />
 
