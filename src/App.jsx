@@ -13,6 +13,7 @@ import { REWARDS } from './data/rewards';
 import { useLocalState } from './hooks/useLocalState';
 import { claimRewardFromVault } from './lib/claimReward';
 import { recordSpin } from './lib/leaderboard';
+import ReaperRunner from "./components/ReaperRunner";
 
 export default function App() {
   const { publicKey, connected } = useWallet();
