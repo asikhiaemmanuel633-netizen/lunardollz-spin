@@ -759,17 +759,16 @@ footer code{ color: var(--gold); }
 
   .rh-preview-section{ flex: 0 0 auto; margin-top: 0; }
   .rh-preview-cards{
-    display: flex;
-    grid-template-columns: none;
-    overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-  }
-  .rh-preview-card{
-    flex: 0 0 30%;
-    aspect-ratio: 1 / 1;
-  }
+  display: flex;
+  grid-template-columns: none;
+  overflow-x: visible;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+ .rh-preview-card{
+  flex: 0 0 18%;
+  aspect-ratio: 1 / 1;
+}
   .rh-preview-label{ display: none; }
 
   .rh-section{ margin: 40px auto; }
