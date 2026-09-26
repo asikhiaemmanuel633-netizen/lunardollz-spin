@@ -3,25 +3,30 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
     <div className="page-home-full">
 
       {/* HERO */}
-      <section className="rh-hero">
-        <img className="rh-hero-logo" src="/brand/logo.png" alt="" aria-hidden="true" />
-        <span className="rh-eyebrow">THE REAPERS</span>
-        <h1>Enter the Realm of the <em>Reapers</em>.</h1>
-        <p>
-          A community-driven collection of 2,222 unique Reapers forged on
-          Solana. Connect your wallet, spin the wheel, complete missions,
-          earn $REAPER points, and hunt for rare digital relics.
-        </p>
-        <div className="rh-hero-actions">
-          <button className="btn" onClick={onGoToSpin}>Enter the Spin</button>
-          <button className="btn btn-ghost" onClick={onGoToAbout}>Explore the Reapers</button>
+      <section
+        className="rh-hero rh-hero-bg"
+        style={{ backgroundImage: 'url(/brand/hero-bg.jpg)' }}
+      >
+        <div className="rh-hero-text">
+          <span className="rh-eyebrow">THE REAPERS</span>
+          <h1>Enter the Realm of the <em>Reapers</em>.</h1>
+          <p>
+            A community-driven collection of 2,222 unique Reapers forged on
+            Solana. Connect your wallet, spin the wheel, complete missions,
+            earn $REAPER points, and hunt for rare digital relics.
+          </p>
+          <div className="rh-hero-actions">
+            <button className="btn" onClick={onGoToSpin}>Enter the Spin</button>
+            <button className="btn btn-ghost" onClick={onGoToAbout}>Explore the Reapers</button>
+          </div>
+          <div className="rh-tagline">2,222 REAPERS &bull; SOLANA &bull; COMMUNITY DRIVEN</div>
         </div>
-        <div className="rh-tagline">2,222 REAPERS &bull; SOLANA &bull; COMMUNITY DRIVEN</div>
+        <img className="rh-hero-character" src="/brand/hero-character.png" alt="" aria-hidden="true" />
       </section>
 
       <div className="bone-divider" aria-hidden="true"><span>🦴</span></div>
 
-      {/* THE REALM AWAITS */}
+      {/* THE REALM AWAITS — preview cards */}
       <section className="rh-section">
         <h2>The Realm Awaits</h2>
         <p className="rh-section-intro">
@@ -29,21 +34,41 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
           community built around collectibles, rewards, games, quests and
           on-chain experiences.
         </p>
-        <div className="rh-cards">
-          <div className="rh-card">
-            <span className="rh-card-icon">☠</span>
-            <h3>The Collection</h3>
-            <p>2,222 unique Reapers forged from a dark collection of traits.</p>
+        <div className="rh-preview-cards">
+          <div className="rh-preview-card" onClick={onGoToAbout}>
+            <img src="/brand/card-reapers.jpg" alt="The Reapers" />
+            <div className="rh-preview-label">
+              <h3>The Reapers</h3>
+              <p>Brand illustrated intro</p>
+            </div>
           </div>
-          <div className="rh-card">
-            <span className="rh-card-icon">⚔</span>
-            <h3>The Community</h3>
-            <p>A place to meet, compete, complete quests and earn your place among the Reapers.</p>
+          <div className="rh-preview-card" onClick={onGoToSpin}>
+            <img src="/brand/card-spin.jpg" alt="Spin" />
+            <div className="rh-preview-label">
+              <h3>Spin</h3>
+              <p>Test your luck</p>
+            </div>
           </div>
-          <div className="rh-card">
-            <span className="rh-card-icon">🎰</span>
-            <h3>The Spin</h3>
-            <p>Test your luck. Win digital rewards, $REAPER points and rare prizes.</p>
+          <div className="rh-preview-card" onClick={onGoToGames}>
+            <img src="/brand/card-games.jpg" alt="Games" />
+            <div className="rh-preview-label">
+              <h3>Games</h3>
+              <p>Endless-runner preview</p>
+            </div>
+          </div>
+          <div className="rh-preview-card" onClick={onGoToAbout}>
+            <img src="/brand/card-collection.jpg" alt="Collection" />
+            <div className="rh-preview-label">
+              <h3>Collection</h3>
+              <p>2,222 unique Reapers</p>
+            </div>
+          </div>
+          <div className="rh-preview-card" onClick={onGoToAbout}>
+            <img src="/brand/card-community.jpg" alt="Community" />
+            <div className="rh-preview-label">
+              <h3>Community</h3>
+              <p>Join the realm</p>
+            </div>
           </div>
         </div>
       </section>
@@ -106,20 +131,6 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
               <li>New experiences</li>
               <li>More ways to participate</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <div className="bone-divider" aria-hidden="true"><span>🦴</span></div>
-
-      {/* GAMES */}
-      <section id="games" className="rh-section game-section">
-        <h2>The Games</h2>
-        <p className="rh-section-intro">Outrun the reaper. Survive as long as you can.</p>
-        <div className="game-card game-card-cover" onClick={onGoToGames}>
-          <img src="/sprites/reaper-run-cover.jpg" alt="Reaper Run" className="game-card-img" />
-          <div className="game-card-overlay">
-            <button className="wooden-play-btn">▶ Play</button>
           </div>
         </div>
       </section>
