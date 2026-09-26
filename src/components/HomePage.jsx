@@ -26,38 +26,18 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
         <div className="rh-preview-cards">
           <div className="rh-preview-card" onClick={onGoToAbout}>
             <img src="/brand/card-reapers.jpg" alt="The Reapers" />
-            <div className="rh-preview-label">
-              <h3>The Reapers</h3>
-              <p>Brand illustrated intro</p>
-            </div>
           </div>
           <div className="rh-preview-card" onClick={onGoToSpin}>
             <img src="/brand/card-spin.jpg" alt="Spin" />
-            <div className="rh-preview-label">
-              <h3>Spin</h3>
-              <p>Test your luck</p>
-            </div>
           </div>
           <div className="rh-preview-card" onClick={onGoToGames}>
             <img src="/brand/card-games.jpg" alt="Games" />
-            <div className="rh-preview-label">
-              <h3>Games</h3>
-              <p>Endless-runner preview</p>
-            </div>
           </div>
           <div className="rh-preview-card" onClick={onGoToAbout}>
             <img src="/brand/card-collection.jpg" alt="Collection" />
-            <div className="rh-preview-label">
-              <h3>Collection</h3>
-              <p>2,222 unique Reapers</p>
-            </div>
           </div>
           <div className="rh-preview-card" onClick={onGoToAbout}>
             <img src="/brand/card-community.jpg" alt="Community" />
-            <div className="rh-preview-label">
-              <h3>Community</h3>
-              <p>Join the realm</p>
-            </div>
           </div>
         </div>
       </section>
