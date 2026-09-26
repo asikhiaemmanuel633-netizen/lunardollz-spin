@@ -18,8 +18,9 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
           </div>
           <div className="rh-tagline">2,222 REAPERS &bull; SOLANA &bull; COMMUNITY DRIVEN</div>
         </div>
-        <img className="rh-hero-character" src="/brand/hero-character.png" alt="" aria-hidden="true" />
       </section>
+
+      <img className="rh-hero-character-centered" src="/brand/hero-character.png" alt="" aria-hidden="true" />
 
       {/* PREVIEW CARDS */}
       <section className="rh-preview-section">
