@@ -153,11 +153,11 @@ export default function App() {
             <button className={page === 'games' ? 'active' : ''} onClick={() => setPage('games')}>Games</button>
             <button className={page === 'about' ? 'active' : ''} onClick={() => setPage('about')}>About</button>
           </nav>
-          <div className="header-right">
-            <span className="beta-chip">Lucky Spins · Beta</span>
-            {connected && <span className="ticket-badge">🎟 {tickets}</span>}
-            <ConnectButton />
-          </div>
+         <div className="header-right">
+  {page === 'spin' && <span className="beta-chip">Lucky Spins · Beta</span>}
+  {connected && <span className="ticket-badge">🎟 {tickets}</span>}
+  <ConnectButton />
+</div>
         </header>
 
         <div className="page-transition" key={page}>
