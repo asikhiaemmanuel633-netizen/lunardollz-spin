@@ -16,11 +16,7 @@
 *{ box-sizing:border-box; }
 html,body,#root{ margin:0; padding:0; min-height:100vh; }
 body{
-  background-image: url('/brand/hero-bg.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background: var(--bg);
   color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
   line-height: 1.5;
@@ -73,7 +69,7 @@ header{
 }
 @media (max-width: 640px){ .main-nav{ order: 3; width: 100%; justify-content:center; } }
 
-/* home page — locked to one screen, no scroll */
+/* home page — locked to one screen, no scroll, own background */
 .page-home-full{ padding-bottom: 20px; }
 
 .page-home-compact {
@@ -83,6 +79,11 @@ header{
   flex-direction: column;
   justify-content: center;
   padding: 16px 5%;
+  background-image: url('/brand/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0 0 24px 24px;
 }
 
 .rh-hero{
@@ -122,6 +123,11 @@ header{
   position: relative;
   z-index: 2;
   max-width: 480px;
+}
+
+.rh-hero-text p,
+.rh-hero-text .rh-tagline {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
 .rh-hero-character {
