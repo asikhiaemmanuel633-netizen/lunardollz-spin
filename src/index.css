@@ -23,7 +23,7 @@ body{
   overflow-x: hidden;
 }
 
-.wrap{ position:relative; z-index:1; max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+.wrap{ position:relative; z-index:1; max-width: 1300px; margin: 0 auto; padding: 0 32px 80px; }
 
 header{
   display:flex; align-items:center; justify-content:space-between;
@@ -84,6 +84,13 @@ header{
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 0 0 24px 24px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  box-sizing: border-box;
 }
 
 .rh-hero{
@@ -1002,4 +1009,7 @@ footer code{ color: var(--gold); }
   font-size: 10px;
   margin: 2px 0 0;
   color: #b794d4;
+}
+html, body {
+  overflow-x: hidden;
 }
