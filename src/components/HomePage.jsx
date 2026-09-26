@@ -3,10 +3,7 @@ export default function HomePage({ onGoToSpin, onGoToAbout, onGoToGames }) {
     <div className="page-home-full">
 
       {/* HERO */}
-      <section
-        className="rh-hero rh-hero-bg"
-        style={{ backgroundImage: 'url(/brand/hero-bg.jpg)' }}
-      >
+     <section className="rh-hero">
         <div className="rh-hero-text">
           <span className="rh-eyebrow">THE REAPERS</span>
           <h1>Enter the Realm of the <em>Reapers</em>.</h1>

@@ -1087,3 +1087,11 @@ footer code{ color: var(--gold); }
   margin: 2px 0 0;
   color: #b794d4;
 }
+body {
+  background-image: url('/brand/hero-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}

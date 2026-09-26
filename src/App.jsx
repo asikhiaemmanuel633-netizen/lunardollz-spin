@@ -7,7 +7,6 @@ import Vault from './components/Vault';
 import BuyTickets from './components/BuyTickets';
 import Leaderboard from './components/Leaderboard';
 import HomePage from './components/HomePage';
-import BackgroundSlideshow from './components/BackgroundSlideshow';
 import AboutPage from './components/AboutPage';
 import { REWARDS } from './data/rewards';
 import { useLocalState } from './hooks/useLocalState';
@@ -141,8 +140,7 @@ export default function App() {
 
   return (
     <>
-      <BackgroundSlideshow />
-      <div className="stars" aria-hidden="true" />
+     
       <div className="wrap">
         <header>
           <div className="wordmark">
