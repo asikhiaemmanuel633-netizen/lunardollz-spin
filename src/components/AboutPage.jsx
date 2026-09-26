@@ -1,4 +1,4 @@
-export default function AboutPage() {
+export default function AboutPage({ onGoToSpin }) {
   return (
     <section className="page-about">
       <div className="about-hero">
@@ -89,6 +89,77 @@ export default function AboutPage() {
           <li><span className="li-icon">🦴</span>Rewards &amp; giveaways</li>
           <li><span className="li-icon">🦴</span>Partnerships &amp; collaborations</li>
         </ul>
+      </div>
+
+      <div className="bone-divider" aria-hidden="true">
+        <span>🦴</span>
+      </div>
+
+      {/* THE LAIR */}
+      <div className="about-section rh-lair">
+        <h2>The Lair</h2>
+        <p>
+          The Reapers are built around the people behind them. Join the
+          community, meet other collectors, participate in events and stay
+          close to what's happening inside the realm.
+        </p>
+        <div className="rh-hero-actions">
+          <a className="btn" href="https://discord.gg/HPNknfkCz" target="_blank" rel="noreferrer">Join the Discord</a>
+          <a className="btn btn-ghost" href="https://x.com/TheGrimRipear" target="_blank" rel="noreferrer">Follow on X</a>
+        </div>
+        <div className="rh-tagline">COMMUNITY &bull; EVENTS &bull; QUESTS &bull; GIVEAWAYS &bull; COLLABS</div>
+      </div>
+
+      {/* THE PATH AHEAD */}
+      <div className="about-section">
+        <h2>The Path Ahead</h2>
+        <p>The realm is only beginning.</p>
+        <div className="rh-roadmap">
+          <div className="rh-phase">
+            <span className="rh-phase-num">01</span>
+            <h3>The Awakening</h3>
+            <ul>
+              <li>Collection development</li>
+              <li>Community building</li>
+              <li>Website</li>
+            </ul>
+          </div>
+          <div className="rh-phase">
+            <span className="rh-phase-num">02</span>
+            <h3>The Gathering</h3>
+            <ul>
+              <li>Mint</li>
+              <li>Holder benefits</li>
+              <li>Community events</li>
+            </ul>
+          </div>
+          <div className="rh-phase">
+            <span className="rh-phase-num">03</span>
+            <h3>The Realm Expands</h3>
+            <ul>
+              <li>Missions</li>
+              <li>Points</li>
+              <li>Spins</li>
+              <li>Rewards</li>
+            </ul>
+          </div>
+          <div className="rh-phase">
+            <span className="rh-phase-num">04</span>
+            <h3>Beyond the Gate</h3>
+            <ul>
+              <li>Collaborations</li>
+              <li>New experiences</li>
+              <li>More ways to participate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* FINAL CTA */}
+      <div className="rh-final-cta">
+        <h2>Will You Answer the Call?</h2>
+        <p>The realm is open.</p>
+        <button className="btn" onClick={onGoToSpin}>Enter the Realm</button>
       </div>
     </section>
   );

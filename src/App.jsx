@@ -168,7 +168,7 @@ export default function App() {
               onGoToGames={() => setPage('games')}
             />
           )}
-          {page === 'about' && <AboutPage onGoToGames={() => setPage('games')} />}
+          {page === 'about' && <AboutPage onGoToSpin={() => setPage('spin')} onGoToGames={() => setPage('games')} />}
 
           {page === 'spin' && (
             <>
