@@ -6,7 +6,7 @@ A horizontal "roll the reel" prize page with a **real Solana wallet connection**
 ## Run it in VS Code
 
 1. Open this folder in VS Code.
-2. In the integrated terminal:
+2. In the integrated terminal: 
    ```bash
    npm install
    npm run dev
