@@ -159,10 +159,10 @@ const ReelSpinner = forwardRef(function ReelSpinner({ onSpinStart, onResult }, r
   const [items, setItems] = useState(() => buildIdleTrack());
 
   useImperativeHandle(ref, () => ({
-    async spin(localSpinsSoFar = 0, walletAddress) {
-      if (spinningRef.current) return;
-      spinningRef.current = true;
-      onSpinStart && onSpinStart();
+    async spin(localSpinsSoFar = 0, walletAddress, isDemo = false) {
+  if (spinningRef.current) return;
+  spinningRef.current = true;
+  onSpinStart && onSpinStart();
 
       // Ask the vault server how many spins this wallet has actually
       // completed — this is what makes the pity window apply per-wallet
@@ -170,30 +170,33 @@ const ReelSpinner = forwardRef(function ReelSpinner({ onSpinStart, onResult }, r
       // whatever this browser's own localStorage happens to say. Falls
       // back to the locally-tracked count if the server can't be reached,
       // so a network hiccup doesn't change the game's behavior unexpectedly.
-      let spinsSoFar = localSpinsSoFar;
-      if (walletAddress) {
-        try {
-          const res = await fetch(`${SPIN_COUNT_API_URL}/${walletAddress}`);
-          if (res.ok) {
-            const data = await res.json();
-            spinsSoFar = data.spins;
-          }
-        } catch (err) {
-          console.warn('Could not verify spin count from server — using local count as fallback:', err);
-        }
-      }
+     let spinsSoFar = localSpinsSoFar;
+if (walletAddress && !isDemo) {
+  try {
+    const res = await fetch(`${SPIN_COUNT_API_URL}/${walletAddress}`);
+    if (res.ok) {
+      const data = await res.json();
+      spinsSoFar = data.spins;
+    }
+  } catch (err) {
+    console.warn('Could not verify spin count from server — using local count as fallback:', err);
+  }
+}
 
-      const safeMode = spinsSoFar < PITY_SPIN_THRESHOLD;
+// Demo spins always stay in the pity/safe pool — never an NFT, no stock impact.
+const safeMode = isDemo ? true : spinsSoFar < PITY_SPIN_THRESHOLD;
 
       // Check real vault stock before picking a result, so a sold-out NFT
       // can never be "won" and then fail to claim.
-      let availability = null;
-      try {
-        const res = await fetch(INVENTORY_API_URL);
-        if (res.ok) availability = await res.json();
-      } catch (err) {
-        console.warn('Could not reach vault server for stock check — spinning without it:', err);
-      }
+     let availability = null;
+if (!isDemo) {
+  try {
+    const res = await fetch(INVENTORY_API_URL);
+    if (res.ok) availability = await res.json();
+  } catch (err) {
+    console.warn('Could not reach vault server for stock check — spinning without it:', err);
+  }
+}
 
       // Pick a result — and if it's an NFT, actually reserve that specific
       // mint with the vault server right now (not just trust the stock
@@ -203,10 +206,10 @@ const ReelSpinner = forwardRef(function ReelSpinner({ onSpinStart, onResult }, r
       // reservation lands first gets it, the other sees it as sold out and
       // gets re-rolled onto something else instead.
       let reward = pickWeightedReward(availability, safeMode);
-      let reserved = !reward.nft; // only real NFTs need reservation
-      let attempts = 0;
-      while (!reserved && attempts < 5) {
-        if (!walletAddress) break; // can't reserve without knowing who's spinning
+let reserved = !reward.nft || isDemo; // only real NFTs need reservation; demo never does
+let attempts = 0;
+while (!reserved && attempts < 5) {
+  if (!walletAddress) break; // can't reserve without knowing who's spinning
         const result = await reserveReward({ walletAddress, rewardId: reward.id });
         if (result.reserved) {
           reserved = true;
@@ -252,9 +255,9 @@ const ReelSpinner = forwardRef(function ReelSpinner({ onSpinStart, onResult }, r
       });
 
       window.setTimeout(() => {
-        spinningRef.current = false;
-        onResult(reward);
-      }, SPIN_DURATION_MS);
+  spinningRef.current = false;
+  onResult(reward, isDemo);
+}, SPIN_DURATION_MS);
     },
   }));
 

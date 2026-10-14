@@ -1,13 +1,17 @@
 import Confetti from './Confetti';
 
-export default function RewardModal({ reward, open, onClaim, onClose, claiming, error, success }) {
+export default function RewardModal({ reward, open, onClaim, onClose, claiming, error, success, isDemo }) {
   if (!reward) return null;
 
-  const buttonLabel = !reward.claimable
+  const buttonLabel = isDemo
     ? 'Close'
-    : claiming
-      ? 'Confirming in wallet…'
-      : 'Claim to Wallet';
+    : !reward.claimable
+      ? 'Close'
+      : claiming
+        ? 'Confirming in wallet…'
+        : 'Claim to Wallet';
+
+  const showClaimAction = !isDemo && reward.claimable;
 
   return (
     <div className={`modal-overlay${open ? ' open' : ''}`} onClick={(e) => e.target === e.currentTarget && !claiming && onClose()}>
@@ -28,10 +32,10 @@ export default function RewardModal({ reward, open, onClaim, onClose, claiming, 
             {reward.image
               ? <img className="badge-img" src={reward.image} alt="" />
               : <div className="badge" style={{ background: reward.color }}>{reward.icon}</div>}
-            <div className="eyebrow">You pulled</div>
+            <div className="eyebrow">{isDemo ? 'Demo pull' : 'You pulled'}</div>
             <h3>{reward.name}</h3>
-            <p>{reward.desc}</p>
-            <button className="btn" onClick={reward.claimable ? onClaim : onClose} disabled={claiming}>
+            <p>{isDemo ? 'This was a demo spin — connect your wallet to spin for real and claim prizes.' : reward.desc}</p>
+            <button className="btn" onClick={showClaimAction ? onClaim : onClose} disabled={claiming}>
               {buttonLabel}
             </button>
             {error && <div className="modal-error">{error}</div>}

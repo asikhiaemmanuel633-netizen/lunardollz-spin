@@ -21,6 +21,7 @@ export const RESERVE_API_URL = 'https://lunardollz.duckdns.org/api/reserve';
 export const RECORD_SPIN_API_URL = 'https://lunardollz.duckdns.org/api/record-spin';
 export const LEADERBOARD_API_URL = 'https://lunardollz.duckdns.org/api/leaderboard';
 export const SPIN_COUNT_API_URL = 'https://lunardollz.duckdns.org/api/spin-count';
+export const FREE_SPINS_API_URL = 'https://lunardollz.duckdns.org/api/claim-free-spins';
 // Must match CLAIM_SHARED_SECRET in the vault server's .env exactly.
 // This is visible to anyone who inspects the website's code — it's a basic
 // filter, not real security. See the vault server's README for the full

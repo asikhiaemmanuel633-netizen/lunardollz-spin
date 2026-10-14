@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import ConnectButton from './components/ConnectButton';
 import ReelSpinner from './components/ReelSpinner';
@@ -12,7 +12,10 @@ import { REWARDS } from './data/rewards';
 import { useLocalState } from './hooks/useLocalState';
 import { claimRewardFromVault } from './lib/claimReward';
 import { recordSpin } from './lib/leaderboard';
+import { claimFreeSpins } from './lib/freeSpins';
 import ReaperRunner from './components/ReaperRunner';
+import MintPage from './components/MintPage';
+
 
 export default function App() {
   const { publicKey, connected } = useWallet();
@@ -27,13 +30,26 @@ export default function App() {
   const [claimSuccess, setClaimSuccess] = useState(false);
   const [vaultClaimingId, setVaultClaimingId] = useState(null);
   const [vaultClaimErrors, setVaultClaimErrors] = useState({});
+  const [isDemoSpin, setIsDemoSpin] = useState(false);
 
   const storageKey = publicKey ? `ldz_${publicKey.toBase58()}` : 'ldz_guest';
-  const [walletState, setWalletState] = useLocalState(storageKey, {
-    tickets: 0,
-    spinCount: 0,
-    vault: [],
-  });
+const [walletState, setWalletState] = useLocalState(storageKey, {
+  tickets: 0,
+  spinCount: 0,
+  vault: [],
+});
+
+useEffect(() => {
+  if (!connected || !publicKey) return;
+  let cancelled = false;
+  claimFreeSpins(publicKey.toBase58())
+    .then((result) => {
+      if (cancelled || !result?.granted) return;
+      setWalletState((s) => ({ ...s, tickets: s.tickets + result.ticketsAwarded }));
+    })
+    .catch((err) => console.warn('Could not claim free spins:', err));
+  return () => { cancelled = true; };
+}, [connected, publicKey, setWalletState]);
 
   const tickets = walletState.tickets || 0;
   const canSpin = connected && !spinning && tickets > 0;
@@ -56,6 +72,10 @@ export default function App() {
     setWalletState((s) => ({ ...s, tickets: s.tickets - 1 }));
     reelRef.current?.spin(walletState.spinCount, publicKey?.toBase58());
   }
+  function handleDemoSpinClick() {
+  if (spinning) return;
+  reelRef.current?.spin(0, null, true);
+}
 
   function handleTicketsBought(count) {
     setWalletState((s) => ({ ...s, tickets: s.tickets + count }));
@@ -65,14 +85,17 @@ export default function App() {
     setSpinning(true);
   }
 
-  function handleResult(reward) {
-    setSpinning(false);
-    setPendingReward(reward);
-    setModalOpen(true);
-    setClaimSuccess(false);
+  function handleResult(reward, isDemo) {
+  setSpinning(false);
+  setPendingReward(reward);
+  setIsDemoSpin(!!isDemo);
+  setModalOpen(true);
+  setClaimSuccess(false);
+  if (!isDemo) {
     setWalletState((s) => ({ ...s, spinCount: s.spinCount + 1 }));
     if (publicKey) recordSpin(publicKey.toBase58());
   }
+}
 
   async function handleClaim() {
     if (!pendingReward || !pendingReward.claimable) return;
@@ -152,6 +175,7 @@ export default function App() {
             <button className={page === 'spin' ? 'active' : ''} onClick={() => setPage('spin')}>Spin</button>
             <button className={page === 'games' ? 'active' : ''} onClick={() => setPage('games')}>Games</button>
             <button className={page === 'about' ? 'active' : ''} onClick={() => setPage('about')}>About</button>
+            <button className={page === 'mint' ? 'active' : ''} onClick={() => setPage('mint')}>Mint</button>
           </nav>
          <div className="header-right">
   {page === 'spin' && <span className="beta-chip">Lucky Spins · Beta</span>}
@@ -169,9 +193,10 @@ export default function App() {
             />
           )}
           {page === 'about' && <AboutPage onGoToSpin={() => setPage('spin')} onGoToGames={() => setPage('games')} />}
+            {page === 'mint' && <MintPage onGoToAbout={() => setPage('about')} />}
 
           {page === 'spin' && (
-            <>
+            <div className="page-spin-bg">
               <section className="hero">
                 <h1>Roll the reel.<br />Wake an <em>NFT</em> from its slumber.</h1>
                 <p>Enter the lair, connect your wallet, and roll once a day for a chance to claim rewards from The Reapers — from rare tokens and loot to exclusive NFT prizes. ☠️</p>
@@ -183,11 +208,17 @@ export default function App() {
                 {connected && (
                   <>
                     <button className="btn" disabled={!canSpin} onClick={handleSpinClick}>
+                      
                       {primaryLabel}
                     </button>
                     <a className="btn btn-ghost" href="#vault">Enter the Vault</a>
                   </>
                 )}
+                {!connected && (
+    <button className="btn btn-ghost" disabled={spinning} onClick={handleDemoSpinClick}>
+      Try a Demo Spin
+    </button>
+  )}
                 <div className="status-line">{statusText}</div>
               </div>
 
@@ -238,7 +269,7 @@ export default function App() {
                 errors={vaultClaimErrors}
                 canClaim={connected}
               />
-            </>
+            </div>
           )}
 
           {page === 'games' && (
@@ -255,7 +286,16 @@ export default function App() {
         </footer>
       </div>
 
-      <RewardModal reward={pendingReward} open={modalOpen} onClaim={handleClaim} onClose={handleCloseModal} claiming={claiming} error={claimError} success={claimSuccess} />
+      <RewardModal
+  reward={pendingReward}
+  open={modalOpen}
+  onClaim={handleClaim}
+  onClose={handleCloseModal}
+  claiming={claiming}
+  error={claimError}
+  success={claimSuccess}
+  isDemo={isDemoSpin}
+/>
     </>
   );
 }

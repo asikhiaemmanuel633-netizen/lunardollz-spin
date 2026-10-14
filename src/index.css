@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Patrick+Hand&display=swap');
+
 :root{
   --bg: #171938;
   --bg-2: #0F1128;
@@ -19,7 +21,7 @@ html,body,#root{ margin:0; padding:0; min-height:100vh; }
 body{
   background: var(--bg);
   color: var(--text);
-  font-family: 'Space Grotesk', sans-serif;
+   font-family: 'Patrick Hand', cursive;
   line-height: 1.5;
   overflow-x: hidden;
 }
@@ -42,7 +44,7 @@ header{
   object-fit: contain;
   filter: drop-shadow(0 0 8px rgba(111,227,148,0.35));
 }
-.wordmark .name{ font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; letter-spacing:0.02em; }
+.wordmark .name{ font-family: 'Permanent Marker', cursive; font-weight:400; font-size:1.3rem; letter-spacing:0.02em; }
 .beta-chip{
   font-size: 0.72rem; color: var(--gold);
   border: var(--outline);
@@ -53,7 +55,7 @@ header{
 /* nav */
 .main-nav{ display:flex; align-items:center; gap:6px; }
 .main-nav button{
-  font-family:'Space Grotesk', sans-serif;
+ font-family: 'Patrick Hand', cursive;
   font-size: 0.85rem;
   color: var(--muted);
   background: none;
@@ -71,15 +73,47 @@ header{
 @media (max-width: 640px){ .main-nav{ order: 3; width: 100%; justify-content:center; } }
 
 /* home page — locked to one screen, no scroll, own background */
-.page-home-full{ padding-bottom: 0; overflow: hidden; position: relative; }
+.page-home-full{
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 32px 24px;
+  overflow: hidden;
+}
 .page-home-full::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   background-image: url('/brand/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.page-spin-bg{
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 32px 24px;
+}
+.page-spin-bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/brand/spin-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+.page-spin-bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 13, 31, 0.35);
   z-index: -1;
 }
 
@@ -110,14 +144,14 @@ header{
 }
 .rh-eyebrow{
   display:block;
-  font-family:'Space Grotesk', sans-serif;
+ font-family: 'Patrick Hand', cursive;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   color: var(--gold);
   margin-bottom: 10px;
 }
 .rh-hero h1{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+ font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: clamp(1.8rem, 4vw, 3rem);
   color: #EDE7D8;
   margin: 0 0 14px;
@@ -177,7 +211,7 @@ header{
 
 .rh-section{ max-width: 900px; margin: 56px auto; text-align:center; }
 .rh-section h2{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: clamp(1.6rem, 3.5vw, 2.2rem);
   color: #EDE7D8;
   margin: 0 0 14px;
@@ -208,7 +242,7 @@ header{
   margin-bottom: 12px;
 }
 .rh-card h3{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: 1.1rem;
   color: #EDE7D8;
   margin: 0 0 8px;
@@ -231,13 +265,13 @@ header{
 }
 .rh-phase-num{
   display:block;
-  font-family:'Fraunces', serif; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-style: normal;
   color: var(--gold);
   font-size: 1.3rem;
   margin-bottom: 6px;
 }
 .rh-phase h3{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: 1rem;
   color: #EDE7D8;
   margin: 0 0 12px;
@@ -270,7 +304,7 @@ header{
   box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 0 60px rgba(111,227,148,0.12);
 }
 .rh-final-cta h2{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: clamp(1.5rem, 4vw, 2.1rem);
   color: #EDE7D8;
   margin: 0 0 10px;
@@ -293,22 +327,24 @@ header{
   filter: drop-shadow(0 0 18px rgba(111,227,148,0.4));
 }
 .about-hero h1{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+ font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: clamp(1.9rem, 5vw, 2.8rem);
   letter-spacing: 0.01em;
   color: #EDE7D8;
   margin: 0 0 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 .about-hero h1 em{ font-style:normal; color: var(--gold); }
 .about-tagline{
-  color: var(--muted) !important;
+  color: var(--text) !important;
   font-style: italic;
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.85), 0 0 20px rgba(0,0,0,0.6);
 }
 
-.about-intro{ text-align:center; max-width: 560px; margin: 0 auto 16px; }
+.about-intro{ text-align:center; max-width: 560px; margin: 0 auto 16px; color: var(--text); text-shadow: 0 2px 6px rgba(0,0,0,0.85), 0 0 16px rgba(0,0,0,0.6); }
 .about-intro strong{ color: #EDE7D8; font-weight:600; }
 
 .bone-divider{
@@ -334,7 +370,7 @@ header{
   box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 .about-section h2{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;
   font-size: 1.3rem;
   color: #EDE7D8;
   letter-spacing: 0.01em;
@@ -374,7 +410,7 @@ header{
 }
 .about-stat .n{
   display:block;
-  font-family:'Fraunces', serif; font-weight:600;
+  font-family: 'Permanent Marker', cursive; font-weight:400;
   font-size: 1.25rem;
   color: var(--gold);
 }
@@ -395,15 +431,16 @@ header{
 
 .hero{ text-align:center; padding: 40px 0 8px; }
 .hero h1{
-  font-family:'Fraunces', serif;
-  font-weight: 500; font-style: italic;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400; font-style: normal;
   font-size: clamp(2.1rem, 5vw, 3.4rem);
+   text-shadow: 0 2px 8px rgba(0,0,0,0.75);
   line-height: 1.08;
   margin: 0 0 14px;
   max-width: 620px; margin-left:auto; margin-right:auto;
 }
 .hero h1 em{ font-style: normal; color: var(--gold); }
-.hero p{ color: var(--muted); max-width: 480px; margin: 0 auto; font-size: 1.02rem; }
+.hero p{ color: var(--text); max-width: 480px; margin: 0 auto; font-size: 1.02rem; text-shadow: 0 2px 6px rgba(0,0,0,0.85), 0 0 20px rgba(0,0,0,0.6); }
 
 /* reel */
 .reel-stage{ display:flex; flex-direction:column; align-items:center; margin-top: 44px; }
@@ -467,7 +504,7 @@ header{
 /* controls */
 .controls{ margin-top: 30px; display:flex; flex-direction:column; align-items:center; gap:12px; }
 .btn{
-  font-family:'Space Grotesk', sans-serif;
+  font-family: 'Patrick Hand', cursive;
   font-weight: 700;
   font-size: 1rem;
   padding: 14px 34px;
@@ -546,14 +583,14 @@ header{
 .steps{ margin-top: 84px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 720px){ .steps{ grid-template-columns: 1fr; } }
 .step{ background: var(--panel); border: var(--outline); border-radius: 16px; padding: 22px 20px; }
-.step .num{ font-family:'Fraunces', serif; font-style:italic; color: var(--gold); font-size:1.6rem; display:block; margin-bottom:8px; }
+.step .num{ font-family: 'Permanent Marker', cursive; font-style: normal; color: var(--gold); font-size:1.6rem; display:block; margin-bottom:8px; }
 .step h3{ margin: 0 0 6px; font-size: 1.02rem; }
 .step p{ margin:0; color: var(--muted); font-size: 0.88rem; }
 
 /* vault */
 .vault{ margin-top: 84px; }
 .vault-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 16px; flex-wrap:wrap; gap:8px; }
-.vault-head h2{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size: 1.5rem; margin:0; }
+.vault-head h2{ font-family: 'Permanent Marker', cursive; font-weight: 400; font-style: normal;font-size: 1.5rem; margin:0; }
 .vault-head .count{ color: var(--muted); font-size:0.85rem; }
 .vault-list{ display:flex; flex-direction:column; gap:8px; }
 .vault-empty{ border: 1px dashed var(--line); border-radius: 12px; padding: 28px; text-align:center; color: var(--muted); font-size: 0.9rem; }
@@ -566,7 +603,7 @@ header{
 .vault-row .r-link{ font-size: 0.76rem; color: var(--gold); text-decoration: underline; }
 .vault-row .r-claim{ display:flex; align-items:center; gap:8px; }
 .r-claim-btn{
-  font-family:'Space Grotesk', sans-serif;
+  font-family: 'Patrick Hand', cursive;
   font-weight: 700;
   font-size: 0.74rem;
   padding: 6px 14px;
@@ -583,13 +620,13 @@ header{
 .stats{ margin-top: 60px; display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
 @media (max-width:640px){ .stats{ grid-template-columns:1fr; } }
 .stat{ background: var(--panel-2); border: var(--outline); border-radius: 14px; padding: 18px 20px; }
-.stat .n{ font-family:'Fraunces', serif; font-size:1.7rem; color: var(--gold); display:block; }
+.stat .n{ font-family: 'Permanent Marker', cursive; font-weight: 400; font-size:1.7rem; color: var(--gold); display:block; }
 .stat .l{ color: var(--muted); font-size: 0.78rem; }
 
 /* leaderboard */
 .leaderboard{ margin-top: 40px; }
 .leaderboard h2{
-  font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+  font-family: 'Permanent Marker', cursive; font-weight:400; font-style: normal;
   font-size: 1.3rem; margin: 0 0 12px;
 }
 .leaderboard-list{ display:flex; flex-direction:column; gap:8px; }
@@ -663,7 +700,7 @@ footer code{ color: var(--gold); }
   border: var(--outline);
 }
 .modal .eyebrow{ color: var(--muted); font-size:0.78rem; margin-bottom: 6px; }
-.modal h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size: 1.5rem; margin: 0 0 10px; }
+.modal h3{ font-family: 'Permanent Marker', cursive; font-style: normal; font-weight:400; font-size: 1.5rem; margin: 0 0 10px; }
 .modal p{ color: var(--muted); font-size: 0.88rem; margin: 0 0 22px; }
 .modal .btn{ width:100%; }
 .modal-error{ color: #E2795D; font-size: 0.8rem; margin-top: 14px; }
@@ -874,8 +911,8 @@ html, body {
   position: absolute;
   top: 12px;
   left: 16px;
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 900;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400;
   font-size: 22px;
   line-height: 1.05;
   letter-spacing: 0.05em;
@@ -938,6 +975,8 @@ html, body {
 }
 
 .reaper-runner-card h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400;
   font-size: 20px;
   margin: 0 0 4px;
   color: var(--gold);
@@ -958,10 +997,10 @@ html, body {
 .reaper-runner-btn {
   margin-top: 10px;
   padding: 8px 24px;
-  background: linear-gradient(135deg, var(--violet-deep), var(--violet));
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
   border: var(--outline);
   border-radius: 6px;
-  color: #fff7ed;
+  color: #0B2717;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -970,7 +1009,7 @@ html, body {
 }
 
 .reaper-runner-btn:hover {
-  background: linear-gradient(135deg, var(--violet), #9B7FD9);
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
 }
 
 .controls-hint {
@@ -991,10 +1030,10 @@ html, body {
   flex: 1;
   max-width: 160px;
   padding: 12px 0;
-  background: linear-gradient(135deg, var(--violet-deep), var(--violet));
+  background: linear-gradient(135deg, var(--gold), var(--gold-dim));
   border: var(--outline);
   border-radius: 8px;
-  color: #e9d5ff;
+  color: #0B2717;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.05em;
@@ -1004,7 +1043,7 @@ html, body {
 }
 
 .reaper-runner-control-btn:active {
-  background: linear-gradient(135deg, var(--violet), #9B7FD9);
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
 }
 .rh-hero-character-centered {
   position: absolute;
@@ -1016,4 +1055,29 @@ html, body {
   filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
   z-index: 1;
   pointer-events: none;
+}
+
+.page-mint-bg{
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0 32px 24px;
+}
+.page-mint-bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/brand/mint-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+}
+.page-mint-bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 13, 31, 0.5);
+  z-index: -1;
 }
